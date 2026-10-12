@@ -42,37 +42,3 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local remote = ReplicatedStorage:WaitForChild("RemoteServices"):WaitForChild("TapService"):WaitForChild("RE"):WaitForChild("TapRequested")
-
-_G.FastAutoTap = true
-
-task.spawn(function()
-    local sequence = 1
-    while _G.FastAutoTap do
-        -- Batch multiple requests per frame for maximum throughput, incrementing sequence
-        for _ = 1, 10 do
-            local args = {
-                [1] = {
-                    ["Auto"] = false,
-                    ["ClientSequence"] = sequence
-                }
-            }
-            pcall(function()
-                remote:FireServer(unpack(args))
-            end)
-            sequence = sequence + 1
-        end
-        task.wait()
-    end
-end)
-
-local args = {
-    [1] = {
-        ["Action"] = "EquipBest",
-        ["Mode"] = "Clicks"
-    }
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("RemoteServices"):WaitForChild("PetService"):WaitForChild("RE"):WaitForChild("PetActionRequested"):FireServer(unpack(args))
