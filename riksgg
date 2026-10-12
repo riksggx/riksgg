@@ -1,3 +1,5 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
 if game.PlaceId == 72858262610964 then
 
 local Window = Rayfield:CreateWindow({
@@ -40,5 +42,3 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that the system will accept, can be RAW file links (pastebin, github, etc.) or simple strings ("hello", "key22")
    }
 })
-
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
